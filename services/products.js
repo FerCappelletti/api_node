@@ -1,3 +1,5 @@
+const boom = require('@hapi/boom');
+
 const getAllProducts = (req, res) => {
   try {
     const products = []
@@ -43,12 +45,13 @@ const getProductById = (req, res) => {
 const updateProducrById = (req, res) => {
   try {
     const {id} = req.params
-  const body = req.body
-  res.json({
-    message: 'success',
-    product: body,
-    id
-  })
+    if(id != 1) throw boom.notFound('Product not found')
+    const body = req.body
+    res.json({
+      message: 'success',
+      product: body,
+      id
+    })
   } catch (error) {
     console.log(error)
   }
