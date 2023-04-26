@@ -14,12 +14,12 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.post('/',validatorHandler(schemaGetProduct, 'params'), validatorHandler(schemaNewProduct, 'body'), async (req, res) => {
+router.post('/', validatorHandler(schemaNewProduct, 'body'), async (req, res) => {
   const product = await productServices.createProduct(req, res)
   return res.json(product)
 })
 
-router.get('/:id', validatorHandler(schemaGetProduct, 'params'),async (req, res) => {
+router.get('/:id',validatorHandler(schemaGetProduct, 'params'), validatorHandler(schemaGetProduct, 'params'),async (req, res) => {
   const product = await productServices.getProductById(req, res)
   return res.json(product)
 })
