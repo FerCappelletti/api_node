@@ -10,7 +10,7 @@ app.use(cors())
 app.use(express.json())
 
 app.get('/',(req, res)=> {
-  res.status(200)
+  res.send('Hello world')
 })
 
 apiRouter(app)
