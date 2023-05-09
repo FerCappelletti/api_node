@@ -6,7 +6,6 @@ const {schemaNewProduct, schemaGetProduct, schemaUpdate} = require('../schemas/p
 
 router.get('/', async (req, res, next) => {
   try {
-    const price = price()
     const products = await productServices.getAllProducts(req, res)
     res.json(products)
   } catch (error) {

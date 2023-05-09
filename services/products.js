@@ -1,18 +1,11 @@
 const boom = require('@hapi/boom');
+const pool = require('../libs/postgres');
 
-const getAllProducts = (req, res) => {
+const getAllProducts = async (req, res) => {
   try {
-    const products = []
-    const { size } = req.query
-    const limit = size
-    const {name, price, image} = req.body
-
-    for(let i = 0; i<limit; i++){
-      products.push({
-        name, price, image
-      })
-    }
-    return products
+    const query = 'SELECT * FROM tasks'
+    const response = await pool.query(query)
+    return response.rows
   } catch (error) {
     console.log(error)
   }
